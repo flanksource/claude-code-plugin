@@ -1,0 +1,20 @@
+{
+  "name": "flanksource-mission-control",
+  "owner": {
+    "name": "Flanksource Inc.",
+    "email": "contact@flanksource.com"
+  },
+  "metadata": {
+    "description": "Mission control skills",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "mission-control-skills",
+      "description": "Collection of skills to diagnose and fix issues with mission control",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/health", "./skills/notifications", "./skills/config_item"]
+    }
+  ]
+}
