@@ -1,11 +1,6 @@
 ---
 name: troubleshooting-config-items
-description: >
-  Troubleshoots infrastructure and application configuration items in Mission Control by diagnosing health issues, analyzing recent changes, and investigating resource relationships. 
-
-  Use when users ask about unhealthy or failing resources, mention specific config items by name or ID, inquire about Kubernetes pods/deployments/services, AWS EC2 instances/volumes, Azure VMs, or other infrastructure components. 
-
-  Also use when investigating why a resource is down, stopped, degraded, or showing errors, or when analyzing what changed that caused an issue.
+description: Troubleshoots infrastructure and application configuration items in Mission Control by diagnosing health issues, analyzing recent changes, and investigating resource relationships. Use when users ask about unhealthy or failing resources, mention specific config items by name or ID, inquire about Kubernetes pods/deployments/services, AWS EC2 instances/volumes, Azure VMs, or other infrastructure components. Also use when investigating why a resource is down, stopped, degraded, or showing errors, or when analyzing what changed that caused an issue.
 allowed-tools: search_catalog, describe_config, list_catalog_types, get_related_configs, search_catalog_changes, get_notification_detail, get_notifications_for_resource
 ---
 

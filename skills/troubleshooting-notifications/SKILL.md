@@ -1,11 +1,6 @@
 ---
 name: troubleshooting-notifications
-description: >
-   Investigates Mission Control notifications to identify root causes and provide remediation. 
-   
-   Use when users mention notification IDs, ask about alerts or notifications, request help understanding "why did I get this notification", want to troubleshoot a specific alert, or ask about notification patterns and history. 
-   
-   This skill retrieves notification details, analyzes historical patterns, routes to resource-specific troubleshooting (config items or health checks), correlates findings, and delivers actionable remediation steps with prevention recommendations.
+description: Investigates Mission Control notifications to identify root causes and provide remediation. Use when users mention notification IDs, ask about alerts or notifications, request help understanding "why did I get this notification", want to troubleshoot a specific alert, or ask about notification patterns and history. This skill retrieves notification details, analyzes historical patterns, routes to resource-specific troubleshooting (config items or health checks), correlates findings, and delivers actionable remediation steps with prevention recommendations.
 allowed-tools: get_notification_detail, get_notifications_for_resource
 ---
 

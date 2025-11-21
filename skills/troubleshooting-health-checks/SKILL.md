@@ -1,10 +1,7 @@
 ---
 name: troubleshooting-health-checks
-description: >
-  Debugs and troubleshoots Mission Control health checks by analyzing check configurations, reviewing failure patterns, and identifying root causes.
-
-  Use when users ask about failing health checks, mention specific health check names or IDs, inquire why a health check is failing or unhealthy, or need help understanding health check errors and timeouts.
-allowed-tools: search_health_checks, get_check_status, run_health_check, list_all_checks
+description: Debugs and troubleshoots Mission Control health checks by analyzing check configurations, reviewing failure patterns, and identifying root causes. Use when users ask about failing health checks, mention specific health check names or IDs, inquire why a health check is failing or unhealthy, or need help understanding health check errors and timeouts.
+allowed-tools: search_health_checks, get_check_status, run_health_check, list_all_checks, search_catalog, describe_config, search_catalog_changes
 ---
 
 # Health Check Troubleshooting Skill
@@ -13,7 +10,7 @@ allowed-tools: search_health_checks, get_check_status, run_health_check, list_al
 
 This skill enables Claude to troubleshoot Mission Control health checks by analyzing check configurations, diagnosing failure patterns, identifying timeout and error root causes, and recommending configuration adjustments to improve reliability.
 
-Note: Read @skills/health/reference/query-syntax.md to for query syntax
+Note: Read @skills/troubleshooting-health-checks/reference/query-syntax.md to for query syntax
 
 ## Health check troubleshooting workflow
 
@@ -28,27 +25,20 @@ Troubleshooting Progress:
 - [ ] Step 5: Verify remediation steps
 ```
 
-**Step 1: Gather health check information**
+## Gather health check information
 
-Collect all relevant data about the failing health check. This includes:
+To begin with, get the id of the check in question.
+Use `search_health_checks` with query syntax to find checks. Read @skills/troubleshooting-health-checks/reference/query-syntax.md to for query syntax
+Else, if you could not get the health check Id from the user provided name, use `list_all_checks` to get complete metadata for all health checks .
 
-- **Find Health Checks**: Use `search_health_checks` with query syntax to find checks. Read @skills/health/reference/query-syntax.md to for query syntax
-- **Historical Context**: Use `get_check_status` to retrieve execution history:
-  - Returns status, time, duration, and error messages
-  - Ordered by most recent first
-  - Default limit: 30 entries
+Then, follow this procedure:
 
-Use `list_all_checks` to get complete metadata for all health checks if you could not get the health check Id from the user provided name.
+- **Historical Context**: Use `get_check_status` to retrieve execution history
+- **Investigate the check specification**: Understand the intention of the check.
+- **Investiagte the chagnes to the canray**: Use `search_catalog_changes(<canary_uuid>)` to get the changes on the canary.
+  Look for the change details to see any new changes on the specification.
 
-Key data points to document:
-
-- Health check ID and name from search results
-- Current status (healthy/unhealthy)
-- Error messages from `get_check_status` history
-- Duration trends from historical data
-- Timing patterns from execution history
-
-**Step 2: Analyze failure patterns**
+## Analyze failure patterns
 
 Examine the historical data to identify patterns. Look for:
 
@@ -69,7 +59,7 @@ Duration analysis:
 - Spiky duration → Intermittent load or resource contention
 - Consistent slow duration → Timeout threshold too aggressive
 
-**Step 3: Create diagnostic summary**
+## Create diagnostic summary
 
 Organize findings systematically. Include:
 
@@ -95,7 +85,7 @@ Example diagnostic format:
 
 > The health check "api-status" (ID: check-123) is failing based on `get_check_status` history showing error "timeout exceeded" in recent executions. Historical data shows duration increasing from 3s to 5s over 6 hours. This indicates backend performance degradation requiring investigation and potential timeout adjustment.
 
-**Step 4: Verify remediation steps**
+## Verify remediation steps
 
 Provide and validate specific fixes. For each recommendation:
 
