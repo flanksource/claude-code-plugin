@@ -50,3 +50,7 @@ Use the bundled per-scraper schemas below. Only open the schema for the requeste
 - Slack: `@skills/create-config-scraper/references/schemas/config_slack.schema.json`
 - Trivy: `@skills/create-config-scraper/references/schemas/config_trivy.schema.json`
 - Terraform: `@skills/create-config-scraper/references/schemas/config_terraform.schema.json`
+
+# Config Scraper
+
+Read: https://flanksource.com/docs/guide/config-db/llms.txt
