@@ -26,7 +26,9 @@ Use this to pick the right transform pattern:
 
 ## Golden Rules
 
-1. Prefer `transform.expr` (CEL) for new manifests.
+1. Prefer `transform.expr` (CEL) by default over `transform.javascript` and `transform.template`.
+   - This is a convention for consistency and easier review, not a strict requirement.
+   - If JS/template is a better fit for the case, use it.
 2. End CEL transforms with `.toJSON()`.
 3. For fan-out transforms, always set deterministic `name`.
 4. Set `pass` explicitly in transformed checks (do not rely on defaults).
@@ -40,41 +42,50 @@ Use this to pick the right transform pattern:
 
 ### A) Fan-out transformed checks
 
-Return JSON array/object with fields like:
+Return a JSON array (or object) of transformed check entries.
 
-- `name` (required for fan-out)
-- `pass` (recommended explicit)
-- `message`
-- `description`
-- `labels`
-- `namespace`
-- `icon`
-- `duration`
-- `start`
-- `detail`
-- `data`
-- `metrics`
-- `deletedAt`
-- `transformDeleteStrategy`
+| Field                     | Required    | Description                                                    | Example                                     |
+| ------------------------- | ----------- | -------------------------------------------------------------- | ------------------------------------------- |
+| `name`                    | **Yes**     | Check name. Keep deterministic across runs.                    | `db/instance-1`                             |
+| `pass`                    | Recommended | Explicit pass/fail status.                                     | `true`                                      |
+| `message`                 | No          | User-facing summary.                                           | `Replication lag within threshold`          |
+| `description`             | No          | Longer explanation/context.                                    | `Replica is healthy`                        |
+| `labels`                  | No          | Labels for filtering/relationships.                            | `{ 'env': 'prod', 'team': 'platform' }`     |
+| `namespace`               | No          | Override check namespace.                                      | `production`                                |
+| `icon`                    | No          | UI icon override.                                              | `alert`                                     |
+| `duration`                | No          | Duration in milliseconds.                                      | `1200`                                      |
+| `start`                   | No          | Start time.                                                    | `2026-02-13T12:00:00Z`                      |
+| `detail`                  | No          | Structured detail payload.                                     | `{ 'raw': r }`                              |
+| `data`                    | No          | Additional arbitrary data.                                     | `{ 'source': 'prometheus' }`                |
+| `metrics`                 | No          | Emitted metrics from transform.                                | `[{ 'name': 'lag', 'type': 'gauge', ... }]` |
+| `deletedAt`               | No          | Mark transformed check as resolved/deleted at a time.          | `r.endsAt`                                  |
+| `transformDeleteStrategy` | No          | Behavior when transformed check disappears (`Mark*`,`Ignore`). | `MarkHealthy`                               |
 
 ### B) Inline transformed result
 
-Return one JSON object **without `name`** to mutate current result:
+Return a **single JSON object** and **omit `name`**.
 
-- Can override `pass`, `message`, `description`, `error`, `detail`, `data`, `duration`, `metrics`, etc.
+| Field         | Required  | Description                             | Example                                               |
+| ------------- | --------- | --------------------------------------- | ----------------------------------------------------- |
+| `name`        | Must omit | If set, this becomes fan-out behavior.  | _omit_                                                |
+| `pass`        | No        | Override pass/fail status.              | `json.status == 'ok'`                                 |
+| `message`     | No        | Override message.                       | `'status=' + string(json.status)`                     |
+| `description` | No        | Override description.                   | `'Health summary'`                                    |
+| `error`       | No        | Override error text.                    | `'response missing key'`                              |
+| `detail`      | No        | Replace detail payload.                 | `{ 'status': json.status }`                           |
+| `data`        | No        | Merge additional data into result data. | `{ 'apiVersion': json.version }`                      |
+| `duration`    | No        | Override duration (milliseconds).       | `1200`                                                |
+| `metrics`     | No        | Add metrics emitted from transform.     | `[{ 'name': 'items', 'type': 'gauge', 'value': 10 }]` |
 
 ### C) Transform into canary/canaries
 
-You can return **either**:
+Return **either** one canary object or an array of canary objects.
 
-1. A single canary object
-2. An array of canary objects
-
-Each object must include:
-
-- `name`
-- `namespace` (optional)
-- `spec` (full canary spec)
+| Field       | Required | Description             | Example                                      |
+| ----------- | -------- | ----------------------- | -------------------------------------------- |
+| `name`      | **Yes**  | Child canary name.      | `generated-http-canary`                      |
+| `namespace` | No       | Child canary namespace. | `default`                                    |
+| `spec`      | **Yes**  | Full child canary spec. | `{ 'schedule': '@every 5m', 'http': [...] }` |
 
 ---
 
