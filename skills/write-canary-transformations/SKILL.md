@@ -252,3 +252,10 @@ When user asks for a transformation:
 6. Return full YAML block ready to paste.
 
 If user provides sample payload, always base transform logic directly on that payload.
+
+---
+
+## References
+
+- Canary spec reference (use this when transform output generates canary `spec`):
+  https://flanksource.com/docs/reference/canary-checker/llms.txt
