@@ -1,5 +1,5 @@
 ---
-name: config-scraper-yaml
+name: create-config-scraper
 description: Generate Mission Control ScrapeConfig YAML from natural language. Use when users ask to build a scraper, create a config scraper, or want YAML to scrape Kubernetes/AWS/GCP/Azure/SQL/HTTP/File/Exec/Logs/Slack/GitHub Actions/Trivy/Terraform sources.
 ---
 
