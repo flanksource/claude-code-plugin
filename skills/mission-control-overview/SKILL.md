@@ -244,6 +244,6 @@ Common first actions in Mission Control:
 8. Create **Views** for Grafana like dashboards
 9. Explore integration bundles from the **mission-control-registry**
 
-Read quick-start references from:
+References:
 
-- [references/QUICKSTART.md](references/QUICKSTART.md)
+- [references/schemas.md](references/schemas.md) — OpenAPI schemas for all CRDs across canary-checker, config-db, and mission-control
