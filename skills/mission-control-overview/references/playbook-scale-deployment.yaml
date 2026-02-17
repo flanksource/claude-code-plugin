@@ -1,0 +1,19 @@
+apiVersion: mission-control.flanksource.com/v1
+kind: Playbook
+metadata:
+  name: scale-deployment
+spec:
+  description: Scale Deployment
+  configs:
+    - types:
+        - Kubernetes::Deployment
+  parameters:
+    - name: replicas
+      label: The new desired number of replicas.
+  actions:
+    - name: kubectl scale
+      exec:
+        script: |
+          kubectl scale --replicas={{.params.replicas}} \
+            --namespace={{.config.tags.namespace}} \
+            deployment {{.config.name}}

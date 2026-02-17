@@ -1,0 +1,14 @@
+---
+apiVersion: mission-control.flanksource.com/v1
+kind: NotificationSilence
+metadata:
+  name: test-env-silence
+spec:
+  from: "2025-01-01"
+  until: "2025-02-01"
+  description: >
+    Silence notifications from all resources in test and stage namespaces
+    for the next 30 days
+  selectors:
+    - namespace: test
+    - namespace: stage
