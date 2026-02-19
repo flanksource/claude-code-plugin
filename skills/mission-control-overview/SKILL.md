@@ -5,6 +5,13 @@ description: High-level guide to Flanksource Mission Control — an Internal Dev
 
 # Flanksource Mission Control — Overview Skill
 
+> **MANDATORY FIRST STEP — DO THIS BEFORE ANYTHING ELSE**
+>
+> Fetch and read **<https://flanksource.com/docs/llms.txt>** right now.
+> This is a sitemap of every concept, feature, and reference page in Mission Control.
+> Reading it gives you a complete picture of what is available so you can answer accurately.
+> **Do not skip this step. Do not answer before reading it.**
+
 ## What Is Mission Control?
 
 Flanksource Mission Control is an Internal Developer Platform that helps teams improve developer productivity and operational resilience.
