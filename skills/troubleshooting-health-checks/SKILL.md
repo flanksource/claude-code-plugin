@@ -35,7 +35,7 @@ Then, follow this procedure:
 
 - **Historical Context**: Use `get_check_status` to retrieve execution history
 - **Investigate the check specification**: Understand the intention of the check.
-- **Investiagte the chagnes to the canray**: Use `search_catalog_changes(<canary_uuid>)` to get the changes on the canary.
+- **Investigate the changes to the canary**: Use `search_catalog_changes(<canary_uuid>)` to get the changes on the canary.
   Look for the change details to see any new changes on the specification.
 
 ## Analyze failure patterns

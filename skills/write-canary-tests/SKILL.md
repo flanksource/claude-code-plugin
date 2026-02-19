@@ -59,7 +59,7 @@ test:
 
 ```yaml
 test:
-  expr: "! ('Authorization' in json.headers.keys())"
+  expr: "! ('Authorization' in headers.keys())"
 ```
 
 ### 3) Exec stdout assertion

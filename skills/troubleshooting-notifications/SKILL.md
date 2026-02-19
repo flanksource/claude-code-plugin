@@ -80,14 +80,14 @@ Based on `resource_type`, invoke the appropriate skill:
 **IF** `resource_type == "ConfigItem"`:
 
 ```
-CALL Skill tool with skill="mission-control-skills:config_item"
+CALL Skill tool with skill="mission-control-skills:troubleshooting-config-item"
 PROVIDE the resource_id and context from notification
 ```
 
 **IF** `resource_type == "HealthCheck"`:
 
 ```
-CALL Skill tool with skill="mission-control-skills:health"
+CALL Skill tool with skill="mission-control-skills:troubleshooting-health-checks"
 PROVIDE the resource_id and context from notification
 ```
 
@@ -234,12 +234,12 @@ PROVIDE the resource_id and context from notification
 When routing to other skills, use this format:
 
 ```markdown
-Based on the notification for resource_type="ConfigItem", I'm now invoking the config_item troubleshooting skill to investigate the underlying resource.
+Based on the notification for resource_type="ConfigItem", I'm now invoking the troubleshooting-config-item skill to investigate the underlying resource.
 
-[CALL Skill tool with skill="mission-control-skills:config_item"]
+[CALL Skill tool with skill="mission-control-skills:troubleshooting-config-item"]
 
 [After skill returns]
-The config_item skill has identified: [summarize findings]
+The troubleshooting-config-item skill has identified: [summarize findings]
 Combined with the notification history showing [pattern], the root cause is [diagnosis].
 ```
 
