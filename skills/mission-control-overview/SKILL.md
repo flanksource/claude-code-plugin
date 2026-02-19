@@ -1,13 +1,13 @@
 ---
 name: mission-control-overview
-description: High-level guide to Flanksource Mission Control — an Internal Developer Platform for Kubernetes. Use when users ask what Mission Control is, what it offers after installation, available CRDs, and quick-start actions (scrapers, scrape plugins, health checks, notifications, silences, playbooks, views, and connections).
+description: High-level guide to Flanksource Mission Control — an Internal Developer Platform for Kubernetes. Use when users ask what Mission Control is, available CRDs, and quick-start actions (scrapers, scrape plugins, health checks, notifications, silences, playbooks, views, and connections).
 ---
 
 # Flanksource Mission Control — Overview Skill
 
 > **MANDATORY FIRST STEP — DO THIS BEFORE ANYTHING ELSE**
 >
-> Fetch and read **<https://flanksource.com/docs/llms.txt>** right now.
+> Fetch and read **<https://flanksource.com/llms.txt>** right now.
 > This is a sitemap of every concept, feature, and reference page in Mission Control.
 > Reading it gives you a complete picture of what is available so you can answer accurately.
 > **Do not skip this step. Do not answer before reading it.**
@@ -40,35 +40,6 @@ Mission Control itself adds orchestration, automation, and a web UI on top of th
 | `Permission`          | Fine-grained access control (RBAC + ABAC)                                               |
 | `Team`                | User groups for access control and notification routing                                 |
 
-## Documentation
-
-All official documentation is available via structured `llms.txt` files:
-
-| Topic                    | URL                                                                    |
-| ------------------------ | ---------------------------------------------------------------------- |
-| **Top-level index**      | <https://flanksource.com/llms.txt>                                     |
-| Full docs                | <https://flanksource.com/docs/llms.txt>                                |
-| User guide               | <https://flanksource.com/docs/guide/llms.txt>                          |
-| Config DB guide          | <https://flanksource.com/docs/guide/config-db/llms.txt>                |
-| Notifications guide      | <https://flanksource.com/docs/guide/notifications/llms.txt>            |
-| Playbooks guide          | <https://flanksource.com/docs/guide/playbooks/llms.txt>                |
-| Views guide              | <https://flanksource.com/docs/guide/views/llms.txt>                    |
-| Permissions guide        | <https://flanksource.com/docs/guide/permissions/llms.txt>              |
-| MCP guide                | <https://flanksource.com/docs/guide/mcp/llms.txt>                      |
-| Health checks reference  | <https://flanksource.com/docs/reference/canary-checker/llms.txt>       |
-| Config DB reference      | <https://flanksource.com/docs/reference/config-db/llms.txt>            |
-| Notifications reference  | <https://flanksource.com/docs/reference/notifications/llms.txt>        |
-| Playbooks reference      | <https://flanksource.com/docs/reference/playbooks/llms.txt>            |
-| Connections reference    | <https://flanksource.com/docs/reference/connections/llms.txt>          |
-| Permissions reference    | <https://flanksource.com/docs/reference/permissions/llms.txt>          |
-| CEL expression reference | <https://flanksource.com/docs/reference/scripting/cel/llms.txt>        |
-| Go template reference    | <https://flanksource.com/docs/reference/scripting/gotemplate/llms.txt> |
-| Installation             | <https://flanksource.com/docs/installation/llms.txt>                   |
-| Integrations             | <https://flanksource.com/docs/integrations/llms.txt>                   |
-| Helm values reference    | <https://flanksource.com/docs/reference/helm/mission-control>          |
-
-When you need specifics on any subsystem, fetch the relevant `llms.txt` URL above.
-
 ## Mission Control Registry
 
 The **[mission-control-registry](https://github.com/flanksource/mission-control-registry)** provides ready-made Helm charts for common integrations:
@@ -85,6 +56,7 @@ The **[mission-control-registry](https://github.com/flanksource/mission-control-
 | `argocd`               | ArgoCD integration                                                          |
 | `prometheus`           | Prometheus integration                                                      |
 | `playbooks-kubernetes` | Kubernetes automation playbooks (scale, restart, drain, logs, delete, etc.) |
+| `misc-playbooks`       | Miscellaneous Playbooks                                                     |
 | `playbooks-flux`       | Flux GitOps playbooks (reconcile, suspend/resume)                           |
 | `playbooks-ai`         | AI-powered troubleshooting playbooks                                        |
 | `mongo-atlas`          | MongoDB Atlas monitoring                                                    |
@@ -93,9 +65,6 @@ The **[mission-control-registry](https://github.com/flanksource/mission-control-
 | `helm`                 | Helm release monitoring                                                     |
 
 Use these registry charts to understand and enable integrations in an existing Mission Control setup.
-
-For install/deployment specifics, use the installation docs at:
-<https://flanksource.com/docs/installation/llms.txt>
 
 ## Core Features
 
