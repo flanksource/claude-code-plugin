@@ -14,7 +14,15 @@
       "description": "Collection of skills to diagnose and fix issues with mission control",
       "source": "./",
       "strict": false,
-      "skills": ["./skills/health", "./skills/notifications", "./skills/config_item"]
+      "skills": [
+        "./skills/troubleshooting-health-checks",
+        "./skills/troubleshooting-notifications",
+        "./skills/troubleshooting-config-item",
+        "./skills/write-canary-transformations",
+        "./skills/write-canary-tests",
+        "./skills/create-config-scraper",
+        "./skills/mission-control-overview"
+      ]
     }
   ]
 }

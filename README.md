@@ -21,11 +21,13 @@ Alternatively, directly install the Plugin via:
 
 After installing the plugin, you can use the skills by just mentioning them. The `mission-control-skills` plugin includes:
 
-- `health` - Skills for diagnosing and fixing health issues with mission control
-- `notifications` - Skills for managing and troubleshooting mission control notifications
-- `config` - Skills for diagnosing and fixing config items with mission control
+- `troubleshooting-health-checks` - Debugs and troubleshoots Mission Control health checks by analyzing check configurations, reviewing failure patterns, and identifying root causes
+- `troubleshooting-notifications` - Investigates Mission Control notifications to identify root causes and provide remediation
+- `troubleshooting-config-item` - Troubleshoots infrastructure and application configuration items in Mission Control by diagnosing health issues, analyzing recent changes, and investigating resource relationships
 - `write-canary-transformations` - Skills for writing canary `transform` blocks in manifests (fan-out checks, inline transforms, and generated canaries)
 - `write-canary-tests` - Skills for writing canary `test` expressions and assertions in manifests
+- `create-config-scraper` - Generate Mission Control ScrapeConfig YAML from natural language
+- `mission-control-overview` - High-level guide to Flanksource Mission Control — an Internal Developer Platform for Kubernetes
 
 To uninstall
 
