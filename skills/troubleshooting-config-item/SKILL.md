@@ -1,7 +1,7 @@
 ---
 name: troubleshooting-config-item
 description: Troubleshoots infrastructure and application configuration items in Mission Control by diagnosing health issues, analyzing recent changes, and investigating resource relationships. Use when users ask about unhealthy or failing resources, mention specific config items by name or ID, inquire about Kubernetes pods/deployments/services, AWS EC2 instances/volumes, Azure VMs, or other infrastructure components. Also use when investigating why a resource is down, stopped, degraded, or showing errors, or when analyzing what changed that caused an issue.
-allowed-tools: search_catalog, describe_config, list_catalog_types, get_related_configs, search_catalog_changes, get_notification_detail, get_notifications_for_resource
+allowed-tools: mcp__mission-control__search_catalog, mcp__mission-control__describe_catalog, mcp__mission-control__list_catalog_types, mcp__mission-control__get_related_configs, mcp__mission-control__search_catalog_changes, mcp__mission-control__get_notification_detail, mcp__mission-control__get_notifications_for_resource
 ---
 
 # Config Item Troubleshooting Skill
@@ -34,7 +34,7 @@ Use the MCP `search_catalog` tool to find the config item:
 - Narrow down to the specific config experiencing issues
 
 **2. Get Complete Config Details**
-Use the MCP `describe_config` tool to retrieve full config information:
+Use the MCP `describe_catalog` tool to retrieve full config information:
 
 - Review the **health** field for overall status
 - Check the **status** field for operational state

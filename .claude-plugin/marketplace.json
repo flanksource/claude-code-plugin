@@ -5,23 +5,26 @@
     "email": "contact@flanksource.com"
   },
   "metadata": {
-    "description": "Mission control skills",
-    "version": "0.0.1"
+    "description": "Skills for troubleshooting, authoring, and evaluating Flanksource Mission Control environments",
+    "version": "0.0.2"
   },
   "plugins": [
     {
       "name": "mission-control-skills",
-      "description": "Collection of skills to diagnose and fix issues with mission control",
+      "description": "Troubleshoot, author, and evaluate Mission Control — config scrapers, playbooks, canary checks, notifications, and promotion readiness",
       "source": "./",
       "strict": false,
       "skills": [
+        "./skills/create-config-scraper",
+        "./skills/mission-control-overview",
+        "./skills/promotion-eval-create",
+        "./skills/promotion-eval-mission-control",
+        "./skills/troubleshooting-config-item",
         "./skills/troubleshooting-health-checks",
         "./skills/troubleshooting-notifications",
-        "./skills/troubleshooting-config-item",
-        "./skills/write-canary-transformations",
         "./skills/write-canary-tests",
-        "./skills/create-config-scraper",
-        "./skills/mission-control-overview"
+        "./skills/write-canary-transformations",
+        "./skills/write-playbook"
       ]
     }
   ]

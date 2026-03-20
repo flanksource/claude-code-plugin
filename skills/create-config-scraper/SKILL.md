@@ -29,6 +29,116 @@ Turn a user request into a valid ScrapeConfig YAML that can be applied in Missio
 - Use `apiVersion: configs.flanksource.com/v1` and `kind: ScrapeConfig`.
 - Set `metadata.name` to a short, unique slug.
 
+## Canonical Snippets
+
+### Kubernetes RBAC
+
+RBAC extraction is automatic when these resources are watched — no transform needed:
+
+```yaml
+apiVersion: configs.flanksource.com/v1
+kind: ScrapeConfig
+metadata:
+  name: k8s-rbac
+spec:
+  kubernetes:
+    - clusterName: my-cluster
+      watch:
+        - apiVersion: rbac.authorization.k8s.io/v1
+          kind: ClusterRole
+        - apiVersion: rbac.authorization.k8s.io/v1
+          kind: ClusterRoleBinding
+        - apiVersion: rbac.authorization.k8s.io/v1
+          kind: Role
+        - apiVersion: rbac.authorization.k8s.io/v1
+          kind: RoleBinding
+        - apiVersion: v1
+          kind: ServiceAccount
+```
+
+### Kubernetes Audit Logs (Loki)
+
+```yaml
+apiVersion: configs.flanksource.com/v1
+kind: ScrapeConfig
+metadata:
+  name: k8s-audit-logs
+spec:
+  logs:
+    - name: k8s-audit
+      type: KubernetesAudit
+      loki:
+        url: http://loki.monitoring:3100
+        query: '{job="kube-audit"}'
+      fieldMapping:
+        id: ["responseStatus.metadata.uid"]
+        message: ["responseStatus.message"]
+        timestamp: ["stageTimestamp", "requestReceivedTimestamp"]
+        severity: ["responseStatus.code"]
+```
+
+### AWS CloudTrail
+
+```yaml
+apiVersion: configs.flanksource.com/v1
+kind: ScrapeConfig
+metadata:
+  name: aws-cloudtrail
+spec:
+  aws:
+    - connection: connection://aws/credentials
+      region:
+        - us-east-1
+      cloudtrail:
+        maxAge: 7d
+        exclude:
+          - AssumeRole
+          - DecodeAuthorizationMessage
+```
+
+### GCP Audit Logs
+
+```yaml
+apiVersion: configs.flanksource.com/v1
+kind: ScrapeConfig
+metadata:
+  name: gcp-audit
+spec:
+  gcp:
+    - project: my-project
+      connection: connection://gcp/credentials
+      auditLogs:
+        dataset: my-project.audit_dataset.cloudaudit_googleapis_com_activity
+        since: 30d
+        serviceNames:
+          - compute.googleapis.com
+          - iam.googleapis.com
+        principalEmails:
+          - "@my-org.com"
+```
+
+### MSSQL Permissions (full: true)
+
+See `@skills/create-config-scraper/references/access-logs.md` for the complete MSSQL example showing `external_users`, `external_roles`, and `config_access` extraction via CEL transforms.
+
+```yaml
+apiVersion: configs.flanksource.com/v1
+kind: ScrapeConfig
+metadata:
+  name: mssql-scraper
+spec:
+  full: true
+  sql:
+    - type: MSSQL::Logon
+      connection: connection://mssql/credentials
+      id: $.id
+      name: $.name
+      transform:
+        expr: |
+          # CEL transform emitting config, external_users, external_roles, config_access
+          # See access-logs.md reference for the full transform expression
+```
+
 ## Reference
 
 # Scraper Schema Map (Bundled)
@@ -51,6 +161,7 @@ Use the bundled per-scraper schemas below. Only open the schema for the requeste
 - Trivy: `@skills/create-config-scraper/references/schemas/config_trivy.schema.json`
 - Terraform: `@skills/create-config-scraper/references/schemas/config_terraform.schema.json`
 
-# Config Scraper
+# Additional References
 
-Read: https://flanksource.com/docs/guide/config-db/llms.txt
+- Access Logs & RBAC: `@skills/create-config-scraper/references/access-logs.md`
+- Config DB documentation: https://flanksource.com/docs/guide/config-db/llms.txt

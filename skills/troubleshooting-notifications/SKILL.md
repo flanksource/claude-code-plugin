@@ -1,7 +1,7 @@
 ---
 name: troubleshooting-notifications
 description: Investigates Mission Control notifications to identify root causes and provide remediation. Use when users mention notification IDs, ask about alerts or notifications, request help understanding "why did I get this notification", want to troubleshoot a specific alert, or ask about notification patterns and history. This skill retrieves notification details, analyzes historical patterns, routes to resource-specific troubleshooting (config items or health checks), correlates findings, and delivers actionable remediation steps with prevention recommendations.
-allowed-tools: get_notification_detail, get_notifications_for_resource
+allowed-tools: mcp__mission-control__get_notification_detail, mcp__mission-control__get_notifications_for_resource
 ---
 
 # Notification Troubleshooting Skill
@@ -80,14 +80,14 @@ Based on `resource_type`, invoke the appropriate skill:
 **IF** `resource_type == "ConfigItem"`:
 
 ```
-CALL Skill tool with skill="mission-control-skills:config_item"
+CALL Skill tool with skill="mission-control-skills:troubleshooting-config-item"
 PROVIDE the resource_id and context from notification
 ```
 
 **IF** `resource_type == "HealthCheck"`:
 
 ```
-CALL Skill tool with skill="mission-control-skills:health"
+CALL Skill tool with skill="mission-control-skills:troubleshooting-health-checks"
 PROVIDE the resource_id and context from notification
 ```
 
@@ -234,20 +234,20 @@ PROVIDE the resource_id and context from notification
 When routing to other skills, use this format:
 
 ```markdown
-Based on the notification for resource_type="ConfigItem", I'm now invoking the config_item troubleshooting skill to investigate the underlying resource.
+Based on the notification for resource_type="ConfigItem", I'm now invoking the troubleshooting-config-item skill to investigate the underlying resource.
 
-[CALL Skill tool with skill="mission-control-skills:config_item"]
+[CALL Skill tool with skill="mission-control-skills:troubleshooting-config-item"]
 
 [After skill returns]
-The config_item skill has identified: [summarize findings]
+The troubleshooting-config-item skill has identified: [summarize findings]
 Combined with the notification history showing [pattern], the root cause is [diagnosis].
 ```
 
 ## Key Success Criteria
 
-✓ Notification context fully understood
-✓ Historical patterns analyzed
-✓ Appropriate skill invoked for resource type
-✓ Root cause identified with evidence
-✓ Clear remediation steps provided
-✓ Prevention recommendations included
+- [ ] Notification context fully understood
+- [ ] Historical patterns analyzed
+- [ ] Appropriate skill invoked for resource type
+- [ ] Root cause identified with evidence
+- [ ] Clear remediation steps provided
+- [ ] Prevention recommendations included
