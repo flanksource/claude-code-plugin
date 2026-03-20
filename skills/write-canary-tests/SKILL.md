@@ -1,6 +1,6 @@
 ---
 name: write-canary-tests
-description: Read this when creating canaries with test expressions.
+description: Write correct test blocks and assertions for Mission Control canary health checks. Use when creating canaries that need pass/fail conditions, adding test expressions, or writing assertions based on HTTP status, JSON response, exec output, or Kubernetes health.
 ---
 
 # Write Canary Tests

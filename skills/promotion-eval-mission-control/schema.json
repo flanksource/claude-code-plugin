@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PromotionEvaluation",
+  "description": "Structured output from a Mission Control platform promotion evaluation",
+  "type": "object",
+  "required": ["verdict", "evaluated_at", "time_window", "target", "components", "findings"],
+  "properties": {
+    "verdict": {
+      "enum": ["READY", "CAUTION", "NOT_READY"],
+      "description": "Overall release readiness verdict"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of evaluation"
+    },
+    "time_window": {
+      "type": "string",
+      "description": "Lookback window used, e.g. 24h, 7d"
+    },
+    "target": {
+      "type": "string",
+      "description": "Environment evaluated, e.g. beta.flanksource.com"
+    },
+    "components": {
+      "type": "object",
+      "description": "Per-component verdicts and metrics",
+      "properties": {
+        "health_checks": { "$ref": "#/$defs/component" },
+        "config_scrapers": { "$ref": "#/$defs/component" },
+        "background_jobs": { "$ref": "#/$defs/component" },
+        "notifications": { "$ref": "#/$defs/component" },
+        "mc_infrastructure": { "$ref": "#/$defs/component" }
+      },
+      "additionalProperties": { "$ref": "#/$defs/component" }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": ["status", "metrics"],
+      "properties": {
+        "status": {
+          "enum": ["PASS", "WARN", "FAIL", "SKIP"],
+          "description": "Component health verdict"
+        },
+        "summary": {
+          "type": "string",
+          "description": "One-line summary of component state"
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": { "type": ["number", "string"] },
+          "description": "Component-specific metrics (e.g. healthy_count, failure_rate, stale_count)"
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["severity", "component", "message"],
+      "properties": {
+        "severity": {
+          "enum": ["critical", "warning", "info"],
+          "description": "Finding severity level"
+        },
+        "component": {
+          "type": "string",
+          "description": "Which evaluation component this finding belongs to"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable description of the finding"
+        },
+        "resource_id": {
+          "type": "string",
+          "description": "Mission Control resource ID if applicable"
+        },
+        "resource_name": {
+          "type": "string",
+          "description": "Human-readable resource name"
+        },
+        "resource_type": {
+          "type": "string",
+          "description": "Resource type (e.g. Kubernetes::Deployment, HealthCheck)"
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Raw data or error message supporting this finding"
+        }
+      }
+    }
+  }
+}

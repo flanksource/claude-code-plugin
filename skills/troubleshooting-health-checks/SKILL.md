@@ -1,7 +1,7 @@
 ---
 name: troubleshooting-health-checks
 description: Debugs and troubleshoots Mission Control health checks by analyzing check configurations, reviewing failure patterns, and identifying root causes. Use when users ask about failing health checks, mention specific health check names or IDs, inquire why a health check is failing or unhealthy, or need help understanding health check errors and timeouts.
-allowed-tools: search_health_checks, get_check_status, run_health_check, list_all_checks, search_catalog, describe_config, search_catalog_changes
+allowed-tools: mcp__mission-control__search_health_checks, mcp__mission-control__get_check_status, mcp__mission-control__run_health_check, mcp__mission-control__list_all_checks, mcp__mission-control__search_catalog, mcp__mission-control__describe_catalog, mcp__mission-control__search_catalog_changes
 ---
 
 # Health Check Troubleshooting Skill
@@ -10,7 +10,7 @@ allowed-tools: search_health_checks, get_check_status, run_health_check, list_al
 
 This skill enables Claude to troubleshoot Mission Control health checks by analyzing check configurations, diagnosing failure patterns, identifying timeout and error root causes, and recommending configuration adjustments to improve reliability.
 
-Note: Read @skills/troubleshooting-health-checks/reference/query-syntax.md to for query syntax
+Note: Read @skills/troubleshooting-health-checks/references/query-syntax.md for query syntax
 
 ## Health check troubleshooting workflow
 
@@ -28,7 +28,7 @@ Troubleshooting Progress:
 ## Gather health check information
 
 To begin with, get the id of the check in question.
-Use `search_health_checks` with query syntax to find checks. Read @skills/troubleshooting-health-checks/reference/query-syntax.md to for query syntax
+Use `search_health_checks` with query syntax to find checks. Read @skills/troubleshooting-health-checks/references/query-syntax.md for query syntax
 Else, if you could not get the health check Id from the user provided name, use `list_all_checks` to get complete metadata for all health checks .
 
 Then, follow this procedure:

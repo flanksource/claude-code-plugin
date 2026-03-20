@@ -21,11 +21,16 @@ Alternatively, directly install the Plugin via:
 
 After installing the plugin, you can use the skills by just mentioning them. The `mission-control-skills` plugin includes:
 
-- `health` - Skills for diagnosing and fixing health issues with mission control
-- `notifications` - Skills for managing and troubleshooting mission control notifications
-- `config` - Skills for diagnosing and fixing config items with mission control
-- `write-canary-transformations` - Skills for writing canary `transform` blocks in manifests (fan-out checks, inline transforms, and generated canaries)
-- `write-canary-tests` - Skills for writing canary `test` expressions and assertions in manifests
+- `mission-control-overview` - High-level guide to Mission Control features, CRDs, and quick-start actions
+- `create-config-scraper` - Generate ScrapeConfig YAML from natural language
+- `write-playbook` - Generate Playbook YAML from natural language
+- `write-canary-tests` - Write canary `test` expressions and assertions
+- `write-canary-transformations` - Write canary `transform` blocks (fan-out, inline, generated canaries)
+- `troubleshooting-health-checks` - Diagnose and fix failing health checks
+- `troubleshooting-config-item` - Diagnose unhealthy infrastructure and application configs
+- `troubleshooting-notifications` - Investigate and troubleshoot notification alerts
+- `promotion-eval-mission-control` - Evaluate Mission Control environment health for release/promotion readiness
+- `promotion-eval-create` - Create custom promotion evaluation templates for any system
 
 To uninstall
 

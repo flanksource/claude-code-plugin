@@ -1,7 +1,7 @@
 ---
 name: troubleshooting-notifications
 description: Investigates Mission Control notifications to identify root causes and provide remediation. Use when users mention notification IDs, ask about alerts or notifications, request help understanding "why did I get this notification", want to troubleshoot a specific alert, or ask about notification patterns and history. This skill retrieves notification details, analyzes historical patterns, routes to resource-specific troubleshooting (config items or health checks), correlates findings, and delivers actionable remediation steps with prevention recommendations.
-allowed-tools: get_notification_detail, get_notifications_for_resource
+allowed-tools: mcp__mission-control__get_notification_detail, mcp__mission-control__get_notifications_for_resource
 ---
 
 # Notification Troubleshooting Skill
@@ -245,9 +245,9 @@ Combined with the notification history showing [pattern], the root cause is [dia
 
 ## Key Success Criteria
 
-✓ Notification context fully understood
-✓ Historical patterns analyzed
-✓ Appropriate skill invoked for resource type
-✓ Root cause identified with evidence
-✓ Clear remediation steps provided
-✓ Prevention recommendations included
+- [ ] Notification context fully understood
+- [ ] Historical patterns analyzed
+- [ ] Appropriate skill invoked for resource type
+- [ ] Root cause identified with evidence
+- [ ] Clear remediation steps provided
+- [ ] Prevention recommendations included

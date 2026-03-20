@@ -1,6 +1,6 @@
 ---
 name: write-canary-transformations
-description: Read this when creating canaries with transformation.
+description: Write correct transform blocks for Mission Control canary checks including fan-out, inline, and generated canary patterns. Use when adding transformations to canary checks, splitting a single check into multiple results, modifying check output, or generating child canaries from discovered resources.
 ---
 
 # Write Canary Transformations

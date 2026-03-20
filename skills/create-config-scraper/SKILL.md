@@ -164,7 +164,4 @@ Use the bundled per-scraper schemas below. Only open the schema for the requeste
 # Additional References
 
 - Access Logs & RBAC: `@skills/create-config-scraper/references/access-logs.md`
-
-# Config Scraper
-
-Read: https://flanksource.com/docs/guide/config-db/llms.txt
+- Config DB documentation: https://flanksource.com/docs/guide/config-db/llms.txt
