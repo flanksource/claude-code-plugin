@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/flanksource/mission-control/api/v1/playbook-spec",
+  "$id": "https://github.com/flanksource/incident-commander/api/v1/playbook-spec",
   "$ref": "#/$defs/PlaybookSpec",
   "$defs": {
     "AIAction": {
