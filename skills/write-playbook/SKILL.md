@@ -30,7 +30,7 @@ Turn a user request into a valid Playbook YAML that can be applied in Mission Co
 - Output YAML only, in a single code block.
 - Use `apiVersion: mission-control.flanksource.com/v1` and `kind: Playbook`.
 - Set `metadata.name` to a short, unique slug.
-- Always include the schema comment: `# yaml-language-server: $schema=https://raw.githubusercontent.com/flanksource/duty/main/schema/openapi/playbook.schema.json`
+- Always include the schema comment: `# yaml-language-server: $schema=https://raw.githubusercontent.com/flanksource/mission-control/main/schema/openapi/playbook.schema.json`
 
 ## Quick Decision Tree
 
